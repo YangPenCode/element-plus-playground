@@ -3,6 +3,7 @@ import { Repl, type SFCOptions } from '@vue/repl'
 import Monaco from '@vue/repl/monaco-editor'
 import type { ImportMap } from '@/utils/import-map'
 import type { UserOptions } from '@/composables/store'
+// import type { UserOptions } from '@/composables/store'
 
 const loading = ref(true)
 const replRef = ref<InstanceType<typeof Repl>>()
@@ -74,17 +75,8 @@ const refreshPreview = () => {
 <template>
   <div v-if="!loading" antialiased>
     <Header :store="store" @refresh="refreshPreview" />
-    <Repl
-      ref="replRef"
-      :theme="dark ? 'dark' : 'light'"
-      :store="store"
-      :editor="Monaco"
-      show-compile-output
-      auto-resize
-      :sfc-options="sfcOptions"
-      :clear-console="false"
-      @keydown="handleKeydown"
-    />
+    <Repl ref="replRef" :theme="dark ? 'dark' : 'light'" :store="store" :editor="Monaco" show-compile-output auto-resize
+      :sfc-options="sfcOptions" :clear-console="false" @keydown="handleKeydown" />
   </div>
   <template v-else>
     <div v-loading="{ text: 'Loading...' }" h-100vh />
